@@ -37,6 +37,15 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
+    <ciManagement>
+        <system>GitHub Actions</system>
+        <url>https://github.com/javadev/buffered-channel-input-stream/actions</url>
+    </ciManagement>
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/javadev/buffered-channel-input-stream/issues</url>
+    </issueManagement>
+
     <build>
         <plugins>
             <plugin>
@@ -64,6 +73,50 @@
                         <version>[5.10.2,)</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <failOnError>false</failOnError>
+                    <detectJavaApiLink>false</detectJavaApiLink>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
